@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>OUTBREAK</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="wrap">
+  <canvas id="game"></canvas>
+  <div id="flash"></div>
+  <div id="hudTop">
+    <div>
+      <div class="statBlock">
+        <div class="barLabel"><span>Survivor Lv.<span id="lvlNum">1</span></span><span class="mono" id="hpText">100/100</span></div>
+        <div class="barTrack"><div class="barFill hpFill" id="hpFill" style="width:100%"></div></div>
+        <div class="barLabel" style="margin-top:5px;"><span>XP</span><span class="mono" id="xpText">0/100</span></div>
+        <div class="barTrack"><div class="barFill xpFill" id="xpFill" style="width:0%"></div></div>
+        <div id="resourceBar">
+          <div class="resChip">🪵 <span class="mono" id="woodCt">0</span></div>
+          <div class="resChip">⚙️ <span class="mono" id="metalCt">0</span></div>
+          <div class="resChip">🔩 <span class="mono" id="scrapCt">0</span></div>
+        </div>
+      </div>
+    </div>
+    <div id="weatherBadge">
+      <span class="wIcon" id="wIcon">☀️</span>
+      <span id="wLabel">CLEAR</span>
+    </div>
+  </div>
+  <div id="centerToast"><div class="big" id="toastBig"></div><div class="small" id="toastSmall"></div></div>
+  <div id="interactPrompt">Tap to interact</div>
+  <div id="weaponStrip"></div>
+  <div id="actionCol">
+    <button class="roundBtn" id="btnBuild" title="Build">🧱</button>
+    <button class="roundBtn" id="btnCraft" title="Craft">🛠️</button>
+    <button class="roundBtn" id="btnGun" title="Gunsmith">🔧</button>
+  </div>
+  <div id="joyZone"><div id="joyBase"></div><div id="joyStick"></div></div>
+  <div id="fireZone"></div>
+  <button id="fireBtn">FIRE</button>
+  <div class="panelOverlay" id="buildOverlay">
+    <div class="panel">
+      <div class="panelHead"><h2>Base Building</h2><button class="closeX" data-close="buildOverlay">✕</button></div>
+      <div class="hint">Select a structure, then tap open ground near you to place it.</div>
+      <div id="buildList"></div>
+    </div>
+  </div>
+  <div class="panelOverlay" id="craftOverlay">
+    <div class="panel">
+      <div class="panelHead"><h2>Crafting Bench</h2><button class="closeX" data-close="craftOverlay">✕</button></div>
+      <div class="tabRow">
+        <button class="tabBtn on" data-tab="weapons">Weapons</button>
+        <button class="tabBtn" data-tab="parts">Gun Parts</button>
+      </div>
+      <div class="tabPane on" id="tabWeapons"></div>
+      <div class="tabPane" id="tabParts"></div>
+    </div>
+  </div>
+  <div class="panelOverlay" id="gunOverlay">
+    <div class="panel">
+      <div class="panelHead"><h2>Gunsmithing</h2><button class="closeX" data-close="gunOverlay">✕</button></div>
+      <div class="hint">Equipped: <b id="gunEquippedName" style="color:var(--bone)">-</b></div>
+      <div id="gunPartList"></div>
+      <div class="statLine" id="gunStats"></div>
+    </div>
+  </div>
+  <div id="deathOverlay">
+    <h1>YOU DIED</h1>
+    <p id="deathStats">Survived — Level — Kills —</p>
+    <button id="respawnBtn">Respawn at Base</button>
+  </div>
+  <div id="startOverlay">
+    <h1>OUTBREAK</h1>
+    <div class="sub">SURVIVAL PROTOTYPE</div>
+    <div class="rules">
+      <b>Left thumb</b> — virtual joystick to move.<br>
+      <b>Right thumb / FIRE</b> — aim &amp; shoot, or punch when Hands are equipped.<br>
+      <b>🧱 Build</b> — place walls &amp; spike traps from resources.<br>
+      <b>🛠️ Craft</b> — build weapons &amp; gun parts.<br>
+      <b>🔧 Gunsmith</b> — attach parts to your equipped weapon.<br>
+      Switch between <b>Hands</b> for punching/gathering and <b>Pistol</b> for shooting.<br>
+      Gather <b>wood/metal/scrap</b> from nodes scattered on the map.<br>
+      Find the <b>jeep</b> to drive fast and ram zombies.<br>
+      Survive zombies, hostile raiders, and rotating weather.
+    </div>
+    <button id="startBtn">DROP IN</button>
+  </div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
